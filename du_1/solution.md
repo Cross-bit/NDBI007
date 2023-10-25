@@ -11,7 +11,20 @@ Well since there are only 4 possible values, in theory we need only two bits. Bu
 This number highly depends on the application requirements, but since we can assume that new planes(from single manufacture) are not produced in high rate, we can expect that 2 B will be sufficient enough.
 (obviously there could be some demands from the marketing point of view but we'll ignore it)
 
+**aircraft_type**:
+
 **weight**:
+
+**length**:
+
+**wings_span**:
+
+**passangers_capacity**:
+
+**cargo_space_volume**:
+
+
+
 
 ## Task 3
 
