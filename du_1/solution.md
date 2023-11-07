@@ -69,7 +69,7 @@ $b_{primary}=4096/32= 128$ (lower whole part)
 
 Number of the 4 kB pages in the primary file is then:
 
-$page\_count_{primary}=20000000/128= 156250$
+$page-count_{primary}=20000000/128= 156250$
 
 (we divide number of recors by the blocking factor for the primary file)
 
@@ -132,10 +132,10 @@ In the subsquent layers we will have secondary key (8 B) and pointer to a page (
 
 The consequence of the same recors sizes is, that the blocking factors will be actually the same (but generally if the primary key size would be distinct from the pointer size, we could get different blocking factors):
 
-$b_{first_layer} = b_{second\_layer} = 341$ (lower whole part)
+$b_{first_layer} = b_{second-layer} = 341$ (lower whole part)
 
 Calculation of the layers. 
-For the first (or 0-th lvl) we would use normally $b_{first layer}$ (on the total number of records in the primary file) and for all the subsequent layers we would use $b_{second\_layer}$.
+For the first (or 0-th lvl) we would use normally $b_{first layer}$ (on the total number of records in the primary file) and for all the subsequent layers we would use $b_{second-layer}$.
 
 But since these blocking factors are equal we would get the same calculation as in the secondary key direct index above. 
 As well as we would get the same number of pages in our index and same goes for the total index size.
@@ -163,13 +163,13 @@ For this task i decided to create bitmap over passangers_capacity attribute. For
 For each capacity separete column.
 The total number of pages needed will be:
 
-$pages\_count=20000000/(4096 \cdot 8)=610$
+$pages-count=20000000/(4096 \cdot 8)=610$
 
 (number of records divided by the product of page size times size of byte)
 
 The total size such bitmap would take is then:
 
-$total\_size=400 \cdot 610 \cdot 4096 \approx 953.13$ MB
+$total-size=400 \cdot 610 \cdot 4096 \approx 953.13$ MB
 
 **Pros:**
  - Single read of appropirate column can return us all the aircrafts with specific capacity.
@@ -195,11 +195,11 @@ For each of the intervals above, we will create an separate bitmap containing 10
 
 The size of the interval bitmap will be:
 
-$total\_size_{interval\_bitmap}=4 \cdot 610 \cdot 4096 \approx 9.53$ MB
+$total-size_{interval-bitmap}=4 \cdot 610 \cdot 4096 \approx 9.53$ MB
 
 And total size of the actual search bitmap:
 
-$total\_size_{search\_bitmap}=100 \cdot 610 \cdot 4096 \approx 238.28$ MB
+$total-size_{search-bitmap}=100 \cdot 610 \cdot 4096 \approx 238.28$ MB
 
 Note we could maybe split it 2 times more (to get intervals by 50) so the final bitmap size would be e.g. only around 60 MB.
 
@@ -218,7 +218,7 @@ Note we could maybe split it 2 times more (to get intervals by 50) so the final 
 
 - Acutally the total size overhead is a bit larger.
 
-$total\_size=total\_size_{interval\_bitmap} + 4 \cdot total\_size_{search\_bitmap} = 962.65$ MB
+$total-size=total-size_{interval-bitmap} + 4 \cdot total-size_{search-bitmap} = 962.65$ MB
 
 <hr>
 
