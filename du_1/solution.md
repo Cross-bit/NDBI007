@@ -144,6 +144,7 @@ In the second scenarion where we are trying to search by secondary key we found 
 So if we want to build index by the second key... we have two almost identical options(based on the storage size...). But the main advantage of the indirect indexing is that whenever we want to change the primary file(adding, deleting new records, moving, ...), the only thing that needs to be updated is the 0-th layer (and not the whole index).
 
 
+
 ## Task 3
 
 
