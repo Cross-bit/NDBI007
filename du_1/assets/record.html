@@ -4,6 +4,14 @@
 .box{
     height: 50px;
     float: left;
+    text-align: center;
+    display: flex;
+    justify-content: center; /* Align horizontal */
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.142);
+    border: 1px solid rgb(87, 87, 87);
 }
 
 </style>
@@ -11,12 +19,50 @@
 <body>
 </body>
 
-<div class="box" style="width: 50px; background-color: rgb(0, 174, 255);">
-    hello
+<div class="box" style=" background-color: rgb(0, 174, 255);">
+    <span>ID<span class="name"><br>
+    <span>4B<span class="size"></span>
 </div>
 
-<div class="box" style="width: 50px; background-color: rgb(0, 174, 255);">
-    hello
+<div class="box" style=" background-color: rgb(144, 207, 239);">
+    <span>manufacturer_identifier<span class="name"><br>
+    <span>2B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(179, 223, 169);">
+    <span>serial_number<span class="name"><br>
+    <span>2B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(236, 178, 115);">
+    <span>aircraft_registration_identifier<span class="name"><br>
+    <span>8B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(236, 115, 115);">
+    <span>weight<span class="name"><br>
+    <span>4B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(236, 169, 115);">
+    <span>length<span class="name"><br>
+    <span>4B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(242, 225, 76);">
+    <span>max_speed<span class="name"><br>
+    <span>4B<span class="size"></span>
+</div>
+
+<div class="box" style=" background-color: rgb(173, 128, 244);">
+    <span>economy_class_capacity<span class="name"><br>
+    <span>2B<span class="size"></span>
+</div>
+
+
+<div class="box" style=" background-color: rgb(244, 128, 234);">
+    <span>cargo_space_volume<span class="name"><br>
+    <span>2B<span class="size"></span>
 </div>
 
 </html>

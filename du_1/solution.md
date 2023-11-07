@@ -54,6 +54,8 @@ Total cargo space size in m^3.
 
 => Total record size: **32 B**
 
+![](./assets/record.JPG)
+
 
 ## Task 2
 
@@ -63,9 +65,9 @@ First we expect to have all the records to be sorted and stored in the primary f
 Blocking factor of the primary file is:
 $b_{primary}=4096/32= 128$ (lower whole part)
 
-(since our record has size 32 B and we have 4 KB pages)
+(since our record has size 32 B and we have 4 kB pages)
 
-Number of the 4 KB pages in the primary file is then:
+Number of the 4 kB pages in the primary file is then:
 
 $page\_count_{primary}=20000000/128= 156250$
 
@@ -98,7 +100,7 @@ Thus the index blocking factor is:
 
 $b_{index} = 4096 / 12 = 341$ (lower whole part)
 
-But to be able to search properly we need to add another lvl, new 0th lvl into our index from the direct index, which will be sorted by the attribute value. For every primary file page we will add new page in the 0th lvl.
+But to be able to search properly we need to add another lvl, new 0-th lvl into our index from the direct index, which will be sorted by the attribute value. For every primary file page we will add new page in the 0-th lvl.
 
 The number of pages on each lvl of our idex is:
 
@@ -118,7 +120,7 @@ And the total size is: 58652 * 4096 = 229.1 MB
 
 
 ### Secondary key indirect index
-Here we will have to calculate two blocking factors one for the first layer and one for the other.
+Here we will have to calculate two blocking factors one for the first layer and one for all the others.
 
 In the first layer we will have tuples of secondary key (8 B) and primary key index (4 B). So total size of the record will be 12 B.
 
@@ -126,7 +128,7 @@ In the subsquent layers we will have secondary key (8 B) and pointer to a page (
 
 The consequence of the same recors sizes is, that the blocking factors will be actually the same (but generally if the primary key size would be distinct from the pointer size, we could get different blocking factors):
 
-$b_{first layer} = b_{second\_layer} = 341$ (lower whole part)
+$b_{first_layer} = b_{second\_layer} = 341$ (lower whole part)
 
 Calculation of the layers. 
 For the first (or 0-th lvl) we would use normally $b_{first layer}$ (on the total number of records in the primary file) and for all the subsequent layers we would use $b_{second\_layer}$.
@@ -134,8 +136,9 @@ For the first (or 0-th lvl) we would use normally $b_{first layer}$ (on the tota
 But since these blocking factors are equal we would get the same calculation as in the secondary key direct index above. 
 As well as we would get the same number of pages in our index and same goes for the total index size.
 
+<hr>
 
-So in summary we can see that to search by the primary key is definetly cheapest in terms of the memory and also since the height of the tree is smallest we can conclude that search will be also the fastest.
+So in summary we can see that to search by the primary key is definetly cheapest in terms of the memory and also since the height of the tree is from all the indexes smallest we can conclude that search will be also the fastest.
 
 (I hope I didn't make the silly mistake that was pointed out on the lecture here, but it makes sense not to include the base layer to the index size, since it is the layer of the primary file...)
 
@@ -192,7 +195,7 @@ $total\_size_{interval\_bitmap}=4 \cdot 610 \cdot 4096 \approx 9.53$ MB
 
 And total size of the actual search bitmap:
 
-$total\_size_{search\_bitmap}=100 \cdot 610 \cdot 4096 \approx 238.28 $ MB
+$total\_size_{search\_bitmap}=100 \cdot 610 \cdot 4096 \approx 238.28$ MB
 
 Note we could maybe split it 2 times more (to get intervals by 50) so the final bitmap size would be e.g. only around 60 MB.
 
@@ -216,7 +219,7 @@ $total\_size=total\_size_{interval\_bitmap} + 4 \cdot total\_size_{search\_bitma
 <hr>
 
 Both of these approaches are not very optimal and maybe the first approach is slightly better in general in todays system, where the operation memory is not a problem. 
-But honestly I really couldn't came up with a better example... I could used similar example like from the lecture with the date (e.g. **manufacture_date**) or in abstract an similar concept, where you have single attribute that actually is made up of two differentiable parts (like e.g. if you would combine the **manufacturer_identifier** with **serial_number** as e. g. new attribute **aircraft_name** (e.g. Boeing 777)). 
+But honestly I really couldn't came up with a better example... I could used similar example like from the lecture with the date (e.g. **manufacture_date**) or in abstract an similar concept, where you have single attribute that actually is made up of two differentiable parts (like e.g. if you would combine the **manufacturer_identifier** with **serial_number** as e. g. new attribute **aircraft_name** (e.g. Boeing 777)) but I didn't want it to be too similar to the lecture. 
 
 
 ## Task 4
@@ -224,14 +227,14 @@ But honestly I really couldn't came up with a better example... I could used sim
 We have following parameters:
 - rotation_speed = 7200 RPM (rotations per minute)
 - r = 60000/7200 = 8.3 ms (60(minutes) * 1000 to rotation in milliseconds)
-- s = 8.5 ms // avg seak time
+- s = 8.5 ms (avg seak time)
 - TC = 0.3 MB
 
 ### If we would read only the record itself
 
 For now lets consider just a case where we would read directly the record from the drive:
 
-The record size is: B = 32 B = 0.000032 MB// block size (here I am converting as regular 1 B = 1 MB * 1/1000000)
+The record size is: B = 32 B = 0.000032 MB (here I am converting as regular 1 B = 1 MB * 1/1000000)
 
 So if we plug in the values just for the record we will get:
 
@@ -243,7 +246,7 @@ $T = 2 \cdot (8.5 + 8.3 + 0.00177) + 2 \cdot 8.3 + 0.00177 = 50.2$ ms
 
 But... since we are talking here about the indexing, we have to take in consideration also the read times we need while searching in the index... 
 
-Also the calculation above was just an example, since what we are really doing is reading data in form of 4 K pages into the RAM and from here we are reading and searching in the indexes. The time needed for the RAM operations we consider to be negligible compared to the HDD read time. 
+Also the calculation above was just an example, since what we are really doing is reading data in form of 4 K pages into the RAM and from here we are reading and searching in the indexes. We will also ignore the time needed for these RAM(or CPU chache) accesses, since they are typically way faster than HDD reads...
 
 So if we take into consideration our direct primary index, we know that our index tree height is 2. Also we know that we have one primary file from which we will need to read the final record. In total we have 3 loads of pages in to our RAM memory. 
 
@@ -265,15 +268,13 @@ The total real time to read the record then depends on the speed of RAM/CPU cach
 ## Task 5
 
 The main difference between HDD and SSD is in the way of storing information. 
-HDD is mostly mechanical device, which uses rotational disks and moving head to read/write data to the disk. 
+HDD is mostly mechanical device, which uses rotational disks and moving head to read/write data to the disk(or multiple disks, with multiple heads). 
 The data itself (the distinct bits) are represented using magnetic fields. 
 Reading head then detects the presence/absence of this magnetic field which is then interpreted as binary 1 or 0. 
 
-On the other hand solid state drives have typically no moving parts and storing of information is done purly electrically in whats called flash memory. Due to the physical properties, these memories are not very well suited for huge number of writes (with each write to a memory cell, this cell becomes more degradated), and have typically smaller capacity against classical HDDs. On the other hand SSDs are typically much faster than HD drives and less less prone to mechanical demage. Due to this properties SSDs are typically used in scenearios where we need fast read/write but we don't need wast amount of memory and the writes are limited. Typicall usecase for SSDs is storage for operating system and other programs.
+On the other hand solid state drives(SSD) have typically no moving parts and storing of information is done purly electrically in whats called flash memory. Due to the physical properties, these memories are not very well suited for huge number of writes (with each write to a memory cell, this cell degradates), and have typically smaller capacity against classical HDDs. On the other hand SSDs are typically much faster than HD drives and less less prone to mechanical demage. Due to this properties SSDs are typically used in scenearios where we need fast read/write but we don't need wast amount of memory and the writes are limited. Typicall usecase for SSDs is storage for operating system and other programs.
 Another great advantage of SSDs over HDDs is typically better energy efficiece, so 
 
 HDDs are used nowdays typically in personal computers as more persistant data storage(meaning the data that are not frequently used), e. g. for larger files as images, videos etc. 
 
 Even though SSDs are faster and less prone to mechanical demage, still majority of server cloud storages uses HDDs, even though they need to be more frequently replaced. The main reason is still price to storage capacity efficiency.
-
-
