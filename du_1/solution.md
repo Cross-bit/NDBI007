@@ -87,7 +87,9 @@ $p_{1} = 306 / 512 = 1$ (upper whole part)
 
 Thus the total number of pages in our index is 306 + 1 = 307. The index will have height 2.
 
-The total size of the index it self is: 307 * 4096  = 1.2 MB  (# pages times size of page in Bytes)
+The total size of the index it self is: 
+
+307 * 4096  = 1.2 MB  (# pages times size of page in Bytes)
 
 
 ## Secondary key direct index:
@@ -116,7 +118,9 @@ So our index tree for secondary key direct index will have height of 3.
 The total number of pages in the index is 58652 + 172 + 1 = 58825. 
 Which is significant increase from the direct index of the primary key.
 
-And the total size is: 58652 * 4096 = 229.1 MB
+And the total size is: 
+
+58652 * 4096 = 229.1 MB
 
 
 ### Secondary key indirect index
