@@ -219,7 +219,7 @@ $totalSize=totalSize_{intervalBitmap} + 4 \cdot totalSize_{searchBitmap} = 962.6
 <hr>
 
 Both of these approaches are not very optimal and maybe the first approach is slightly better in general in todays system, where the operation memory is not a problem. 
-But honestly I really couldn't came up with a better example... I could used similar example like from the lecture with the date (e.g. **manufacture_date**) or in abstract an similar concept, where you have single attribute that actually is made up of two differentiable parts (like e.g. if you would combine the **manufacturer_identifier** with **serial_number** as e. g. new attribute **aircraft_name** (e.g. Boeing 777)) but I didn't want it to be too similar to the lecture. 
+But honestly I really couldn't came up with a better example... I could used similar example like from the lecture with the date (e.g. **manufacture_date**) or in abstract an similar concept, where you have single attribute that actually is made up of two different parts (like e.g. if you would combine the **manufacturer_identifier** with **serial_number** as e. g. new attribute **aircraft_name** (e.g. Boeing 777)) but I didn't want it to be too similar to the lecture. 
 
 
 ## Task 4
