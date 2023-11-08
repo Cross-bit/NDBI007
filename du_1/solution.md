@@ -153,10 +153,6 @@ So if we want to build index by the second key... we have two almost identical o
 
 
 ## Task 3
-
-
-### Alternative solution:
-
 For this task i decided to create bitmap over passangers_capacity attribute. For the commercial airplanes in economy class we can have capacity up to 439 passagers (we can round this to 400 just for the simplicity...)
 
 ### First approach
