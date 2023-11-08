@@ -218,7 +218,7 @@ Note we could maybe split it 2 times more (to get intervals by 50) so the final 
 
 - Acutally the total size overhead is a bit larger.
 
-$totalSize=totalSize_{intervalBitmap} + 4 \cdot total-size_{searchBitmap} = 962.65$ MB
+$totalSize=totalSize_{intervalBitmap} + 4 \cdot totalSize_{searchBitmap} = 962.65$ MB
 
 <hr>
 
